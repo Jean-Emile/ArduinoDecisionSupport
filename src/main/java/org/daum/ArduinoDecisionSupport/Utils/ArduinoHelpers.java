@@ -1,0 +1,109 @@
+package org.daum.ArduinoDecisionSupport.Utils;
+
+import java.io.*;
+
+/**
+ * Created by jed
+ * User: jedartois@gmail.com
+ * Date: 10/01/12
+ * Time: 17:23
+ */
+public class ArduinoHelpers {
+
+
+    public static String readFile(String path)
+    {
+        StringBuilder buffer = new StringBuilder();
+        try
+        {
+            BufferedReader buff = new BufferedReader(new FileReader(path));
+            String line;
+            while ((line = buff.readLine()) != null)
+            {
+                buffer.append(line+"\n");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return buffer.toString();
+    }
+
+    public static void createFile(String filename,String contenu) throws IOException {
+        FileWriter fstream = new FileWriter(filename);
+        BufferedWriter out = new BufferedWriter(fstream);
+        out.write(contenu);
+        out.close();
+    }
+
+
+    public static String createMainArduinoECA(){
+
+        return "void setup()\n" +
+                "{\n" +
+                "  \n" +
+                "  Serial.begin(115200);\n" +
+                "  setTime(8,29,0,24,1,12); // set time to 8:29:00am Jan 24 2012\n" +
+                " \n" +
+                "  setup_eca();  \n" +
+                "\n" +
+                "}\n" +
+                "\n" +
+                "void  loop(){  \n" +
+                "\n" +
+                "  Alarm.delay(1000); // wait one second between clock\n" +
+                "}";
+    }
+
+    public static String createMainGCC(){
+       return " int main(void){\n" +
+               "while(1){\n" +
+               "    float temperature[3];\n" +
+               "	temperature[0]= 45;\n" +
+               "    printf(\"Temperature %f \\n\",temperature[0]);\n" +
+                "   control(temperature, crisp_outputs);	\n" +
+               "    printf(\"Pourcentage motor fan : %f \\n\",crisp_outputs[0]);\n" +
+               "	sleep(1);\n" +
+               "}" +
+               "}";
+
+    }
+
+    public static String createFreeRam(){
+        return "int freeRam ()\n" +
+                "{\n" +
+                "  extern int __heap_start, *__brkval;\n" +
+                "  int v;\n" +
+                "  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);\n" +
+                "}\n" +
+                "";
+    }
+        public static String createMainArduino(){
+       return createFreeRam()+"void setup()\n" +
+               "{\n" +
+                "Serial.begin(115200);\n " +
+               "Serial.print(\"Number of Rules : \");\n " +
+               "Serial.println(NUM_RULES); " +
+                "Serial.print(\"Free Ram \");\n" +
+               "  Serial.println(freeRam ());\n" +
+               "displayRules();\n" +
+               "displayDomain();\n" +
+               "delay(3000);" +
+               "}\n" +
+               " void loop() \n " +
+               "{ \n " +
+               "float temperature[3];\n" +
+               "  	temperature[0]= 45;\n" +
+               "        Serial.print(\"t= \");\n" +
+                    "       Serial.println(temperature[0]);\n" +
+                    "       control(temperature, crisp_outputs);\n" +
+                    "        Serial.print(\"f= :\");\n" +
+                    "      Serial.println(crisp_outputs[0]); \n" +
+               "delay(2000);\n" +
+
+               "} ";
+
+}
+
+
+
+}
