@@ -87,7 +87,7 @@ public class ArduinoECACodeGenerator implements AbstractCodeGenerator {
                     case EVERY :
 
                         eca_temporal.append("OnTick_t onTick"+i+";");
-                        eca_temporal.append(" onTick"+i+".fnc = fire_rule;");
+                        eca_temporal.append(" onTick"+i+".fnc = eca_fire_rule;");
                         eca_temporal.append("onTick"+i+".id ="+i+";");
 
 
@@ -125,7 +125,7 @@ public class ArduinoECACodeGenerator implements AbstractCodeGenerator {
 
         ST rules_code;
         rules_code = new ST(file_template_rules);
-        rules_code.add("ECA_ACTIONS", "actionTest");
+        rules_code.add("ECA_ACTIONS", actions);
         rules_code.add("_num_rule_predicate", num_rule_predicate);
         rules_code.add("eca_rules", eca_rules);
         rules_code.add("ECA_SETUP", eca_temporal);
@@ -134,7 +134,7 @@ public class ArduinoECACodeGenerator implements AbstractCodeGenerator {
         code.append(header_code.render());
         code.append(rules_code.render());
         code.append(file_template_framework);
-        code.append(ArduinoHelpers.createMainArduinoECA());
+        //code.append(ArduinoHelpers.createMainArduinoECA());
 
 
 

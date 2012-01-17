@@ -68,6 +68,33 @@ public class ArduinoHelpers {
 
     }
 
+
+    public static String createBaliseHommeMortMain(){
+        return "void setup() {                \n" +
+                "  // initialize the digital pin as an output.\n" +
+                "  // Pin 13 has an LED connected on most Arduino boards:\n" +
+                "  pinMode(13, OUTPUT);   \n" +
+                "setTime(8,29,0,24,1,12); // set time to 8:29:00am Jan 24 2012\n" +
+                "setup_eca();pinMode(4, OUTPUT); // set a pin for buzzer output\n" +
+                "Serial.begin(115200);\n" +
+                "}\n" +
+                "\n" +
+                "void loop() \n" +
+                "{\n" +
+                "  Alarm.delay(1000);\n" +
+                "\n" +
+                "int sensorValue = analogRead(A0);\n" +
+                "\n" +
+                "\n" +
+                "eca_inputs_values[ECA_temperature] = map((int)sensorValue,0,1024,-10,60 );\n" +
+                "\n" +
+                "\n" +
+                "  Serial.print(\"Fake Temperature\");\n" +
+                "  Serial.println(eca_inputs_values[ECA_temperature]);\n" +
+                "\n" +
+                "}";
+    }
+
     public static String createFreeRam(){
         return "int freeRam ()\n" +
                 "{\n" +

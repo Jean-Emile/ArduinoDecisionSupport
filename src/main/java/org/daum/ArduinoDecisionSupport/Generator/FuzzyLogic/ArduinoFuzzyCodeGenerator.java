@@ -139,7 +139,7 @@ public class ArduinoFuzzyCodeGenerator implements AbstractCodeGenerator {
         code.append(generateDomain());
         code.append(generateRules());
         code.append(file_template_framework);
-        code.append(ArduinoHelpers.createMainArduino());
+      //  code.append(ArduinoHelpers.createMainArduino());
         // code.append(ArduinoHelpers.createMainGCC());
         return code.toString();
     }

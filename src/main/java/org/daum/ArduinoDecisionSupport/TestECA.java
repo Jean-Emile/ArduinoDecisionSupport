@@ -17,21 +17,25 @@ public class TestECA {
 
         ArduinoPorts inputs = new ArduinoPorts();
 
-        ArduinoPort domain = new ArduinoPort("FAN");
 
-        inputs.addPort(domain);
+        ArduinoPort inputAlerte = new ArduinoPort("temperature");
 
+
+        inputs.addPort(inputAlerte);
 
         ArduinoECACodeGenerator codeECAgen = new ArduinoECACodeGenerator(inputs);
 
+        codeECAgen.addRule("EVERY 1 SECONDES CHECK IF temperature IS HIGHER 30 DO turnOnLed;");
+        codeECAgen.addRule("EVERY 5 SECONDES CHECK IF temperature IS LESS 30 DO turnOffLed;");
 
-        codeECAgen.addRule("EVERY 2 SECONDES CHECK IF FAN IS EQUALS 22 AND FAN IS LESS 20 DO actionTest;");
-        codeECAgen.addRule("EVERY 15 SECONDES CHECK IF FAN IS HIGHER 22 DO actionTest;");
+        codeECAgen.addRule("EVERY 1 SECONDES CHECK IF temperature IS HIGHER 40 DO TurnOnbeep;");
+        codeECAgen.addRule("EVERY 5 SECONDES CHECK IF temperature IS HIGHER 50 DO TurnOnbeep1;");
 
 
 
 
-        ArduinoHelpers.createFile("eca.c",         codeECAgen.getCodeGenerate());
+        ArduinoHelpers.createFile("eca.c", codeECAgen.getCodeGenerate()+ ArduinoHelpers.createBaliseHommeMortMain());
+
 
 
 
