@@ -19,8 +19,6 @@ void eca_fire_rule(unsigned char i)
 		{
 		case EQUALS :
 
-
-
 			if(eca_get_input_value(eca_rules[i].eca_predicate[j].id) == eca_rules[i].eca_predicate[j].value)
 			{
 			    /*

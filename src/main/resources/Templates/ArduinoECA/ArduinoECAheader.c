@@ -68,3 +68,13 @@ void turnOffLed(){
   digitalWrite(13, LOW);    // set the LED off
 
 }
+
+static unsigned char mouvementbool=0;
+
+
+void checkMove(){
+     if(rand()==1){
+        mouvementbool++;
+     }
+
+}

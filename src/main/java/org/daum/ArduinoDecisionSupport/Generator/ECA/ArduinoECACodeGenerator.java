@@ -32,7 +32,6 @@ public class ArduinoECACodeGenerator implements AbstractCodeGenerator {
     public ArduinoECACodeGenerator(ArduinoPorts inputs){
         ecaDSL   = new ParserECA();
         _stringRules = new StringBuilder();
-
         file_template_header = ArduinoHelpers.readFile(this.getClass().getClassLoader().getResource("Templates/ArduinoECA/ArduinoECAheader.c").getPath());
         file_template_rules = ArduinoHelpers.readFile(this.getClass().getClassLoader().getResource("Templates/ArduinoECA/ArduinoECARules.c").getPath());
         file_template_framework = ArduinoHelpers.readFile(this.getClass().getClassLoader().getResource("Templates/ArduinoECA/ArduinoECAFramework.c").getPath());

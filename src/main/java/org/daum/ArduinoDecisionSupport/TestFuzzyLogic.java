@@ -18,7 +18,7 @@ public class TestFuzzyLogic {
 
 
         ArduinoFuzzyDomainGenerator temperature = new ArduinoFuzzyDomainGenerator("temperature");
-        temperature.addTerm("cold", new Double[]{-10.000000, -10.000000, -5.000000, 0.000000});
+        temperature.addTerm("cold", new Double[]{-10.000000, -10.0, -5.000000, 0.000000});
         temperature.addTerm("warm", new Double[]{0.000000, 11.000000, 17.000000, 25.000000});
         temperature.addTerm("cool", new Double[]{24.000000, 24.000000, 28.000000, 30.000000});
         temperature.addTerm("hot", new Double[]{28.000000, 60.000000, 60.000000, 60.000000});
